@@ -1,21 +1,22 @@
 var app = angular.module('myApp', [
     'ngRoute',
-    'ngCookies'
+    'ngCookies',
+    'myApp.routing',
+    'myApp.authenticationService',
+    'myApp.panelCtrl',
+    'myApp.loginCtrl',
+    'myApp.signUpCtrl',
+    'myApp.googleMapService'
 ])
-    .run(function($http, $rootScope, $location, $cookieStore) {
+    .run(function($http, $rootScope, $location, $cookieStore, AuthenticationService) {
 
-        //We create the object that will hold our globals or
-        //recover it from our cookie store
+        //We check if the user is logged in.
         $rootScope.globals = $cookieStore.get('globals') || {};
-
-        //If the current user is set, we set the auth data for our $http
-        //requests
         if ($rootScope.globals.currentUser) {
-            $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.globals.currentUser.authdata;
+            $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.globals.currentUser.authdata; // jshint ignore:line
         }
 
-        //When Angular emits $locationchangestart event, we check if the
-        //user is logged in
+        //When Angular emits $locationchangestart event
         $rootScope.$on('$locationChangeStart', function(event, next, current) {
 
             // redirect to login page if not logged in

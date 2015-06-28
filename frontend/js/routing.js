@@ -2,28 +2,23 @@ var routing = angular.module('myApp.routing', []);
 
 routing.config(['$routeProvider',
     function($routeProvider) {
-        $routeProvider
-
-            // The login route
-        .when('/login', {
+        $routeProvider.
+            //login panel
+        when('/login', {
                 templateUrl: 'partials/login.html',
                 controller: 'LoginCtrl'
-        })
-
-            // The Sign up route
-        .when('/sign-up', {
+            }).
+            //sign-up panel
+        when('/sign-up', {
                 templateUrl: 'partials/sign-up.html',
                 controller: 'SignUpCtrl'
-        })
-
-            // When we are logged in
-        .when('/panel', {
+            }).
+            //control panel
+        when('/panel', {
             templateUrl: 'partials/panel.html',
             controller: 'PanelCtrl'
-        })
-
-           // Otherwise redirect to the login view
-        .otherwise({
+        }).
+        otherwise({
             redirectTo: '/login'
         });
     }
