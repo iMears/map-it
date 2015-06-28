@@ -1,8 +1,9 @@
 // Load required packages
-var express = require('express');
-var mongoose = require('mongoose');
-var bodyParser = require('body-parser');
-var passport = require('passport');
+var express     = require('express');
+var mongoose    = require('mongoose');
+var bodyParser  = require('body-parser');
+var passport    = require('passport');
+var credentials = require('./config/credentials')
 
 // Import the controllers
 var locationController = require('./controllers/location');
@@ -13,7 +14,7 @@ var authController = require('./controllers/auth');
 var app = express();
 
 // Connect to the mapit database
-mongoose.connect('mongodb://localhost:27001/mapit', function (err, db) {
+mongoose.connect(credentials.mongodb.url, function (err, db) {
   if (!err) {
     console.log("Connected!");
   } else {
