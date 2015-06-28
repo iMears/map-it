@@ -22,7 +22,7 @@ var UserSchema = new mongoose.Schema({
 // a wrapped ServerResponse object and a next callback. Each middleware can decide
 // to respond by calling methods on the response object, and/or pass the request
 // off to the next layer in the stack by calling next().
-//
+
 // Execute before each user.save() call
 UserSchema.pre('save', function(next) {
   var user = this;

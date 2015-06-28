@@ -4,8 +4,17 @@ var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var passport = require('passport');
 
+// Create our Express application
 var app = express();
-mongoose.connect('mongodb://localhost:27017/mapit');
+
+// Connect to the mapit database
+mongoose.connect('mongodb://localhost:27001/mapit', function (err, db) {
+  if (!err) {
+    console.log("Connected!");
+  } else {
+    console.log(err);
+  }
+});
 
 // The body parser will let us parse the url-encoded http requests
 // The "extended" syntax allows for rich objects and arrays to be encoded into
