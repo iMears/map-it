@@ -8,7 +8,7 @@ panelCtrl.controller('PanelCtrl', function($scope, $rootScope, $location, $http,
         AuthenticationService.ClearCredentials();
 
         //we relocate to login page
-        $location.path('/');
+        $location.path('/login');
     };
 
     //Called when adding a message to the map

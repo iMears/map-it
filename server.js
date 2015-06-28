@@ -22,6 +22,8 @@ mongoose.connect(credentials.mongodb.url, function (err, db) {
   }
 });
 
+app.use(express.static(__dirname + '/frontend'));
+
 // Use the body-parser package in the application
 // The "extended" syntax allows for rich objects and arrays to be encoded into
 // the urlencoded format, allowing for a JSON-like experience with urlencoded.
