@@ -29,6 +29,7 @@ exports.postUsers = function(req, res) {
 
   user.save(function(err) {
       if (err){
+        console.log(err)
         res.json({ message: 'User might already exist' });
         return;
       }
