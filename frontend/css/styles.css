@@ -11,6 +11,7 @@
 
 .control-panel {
     position: relative;
+    border-radius: 7px;
 }
 
 #submit-button {
@@ -37,7 +38,7 @@
 }
 
 #map-canvas {
-    height: 800px;
+    height: 650px;
 }
 
 .control-panel {
@@ -48,4 +49,8 @@
     background-color: rgba(192, 192, 192, 0.8);
     padding: 20px;
     position: absolute;
+}
+
+.delete-btn {
+    float: right;
 }
