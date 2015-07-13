@@ -135,6 +135,7 @@ angular.module('myApp.googleMapService', [])
             var latlngbounds = new google.maps.LatLngBounds();
             locations.forEach(function(n) {
                 latlngbounds.extend(n.latlon);
+                console.log(n.latlon)
             });
             return latlngbounds;
         }
@@ -173,7 +174,7 @@ angular.module('myApp.googleMapService', [])
 
                 var mapOptions = {},
                     bounds,
-                    fitBounds = false;
+                    fitBounds = true;
 
                 //If we have markers to show
                 if (locations.length !== 0) {
@@ -209,7 +210,7 @@ angular.module('myApp.googleMapService', [])
                 var icon =
                     sameUser() ?
                     'http://maps.google.com/mapfiles/ms/icons/blue-dot.png' :
-                    'http://maps.google.com/mapfiles/ms/icons/red-dot.png';
+                    'http://maps.google.com/mapfiles/ms/icons/pink-dot.png';
 
                 //We create a marker
                 var marker = new google.maps.Marker({
