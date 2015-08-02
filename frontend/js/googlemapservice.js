@@ -36,6 +36,8 @@ angular.module('myApp.googleMapService', [])
       .error(function(response) {
         console.log(response);
       });
+
+    angular.element(window).on("resize", resize);
   };
 
   /***************************
@@ -158,9 +160,10 @@ angular.module('myApp.googleMapService', [])
   * Resize the map when window size changes
   **************************/
   function resize() {
-    console.log("resizing")
-    if (!cache.map) {
-      cache.map = $('#map-canvas');
+    console.log("resizing...")
+
+    if (!mapCanvas) {
+      var mapCanvas = $('#map-canvas');
     }
 
     var header = angular.element(document.querySelector( 'header' ));
@@ -168,14 +171,7 @@ angular.module('myApp.googleMapService', [])
     var hh     = header.prop('offsetHeight');
     var winH   = window.innerHeight;
 
-    if (cache.map) {
-      var center = cache.map.getCenter();
-      cache.map.css("height", (winH - hh) + "px");
-      google.maps.event.trigger(cache.map, "resize");
-      cache.map.setCenter(center);
-    } else {
-      cache.map.css("height", (winH - hh) + "px");
-    }
+    mapCanvas.css("height", (winH - hh) + "px");
   }
 
   /***************************
@@ -204,6 +200,9 @@ angular.module('myApp.googleMapService', [])
       bounds,
       fitBounds = true;
 
+      mapOptions.minZoom = 3;
+
+
       //If we have markers to show
       if (locations.length !== 0) {
         bounds = getBounds(locations);
@@ -212,7 +211,7 @@ angular.module('myApp.googleMapService', [])
       //Else we center on Montreal
       else {
         mapOptions.center = new google.maps.LatLng(45.5, -73.5667);
-        mapOptions.zoom = 15;
+        // mapOptions.maxZoom = 15;
       }
 
       //the new map
@@ -224,11 +223,16 @@ angular.module('myApp.googleMapService', [])
         cache.map.fitBounds(bounds);
       }
 
-      //
+      // zoom out one level if zoom is greater than 5
       var listener = google.maps.event.addListener(cache.map, "idle", function() {
         if (cache.map.getZoom() > 5) cache.map.setZoom((cache.map.getZoom() - 1));
         google.maps.event.removeListener(listener);
       });
+
+      google.maps.event.addListenerOnce(cache.map, 'idle', function() {
+        resize();
+      });
+
     }
 
     //we add the markers to the map and set the listeners

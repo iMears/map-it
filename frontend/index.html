@@ -9,17 +9,18 @@
   <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCQ0uVrwPF7O9VaHT6wCy5ikn7mYsaawXs"></script>
 </head>
 <body ng-app="myApp">
-  <div class="container">
-    <div class="row">
-      <header>
-        <div class="col-md-12 text-center">
-          <h1>Gina Map</h1>
-        </div>
-      </header>
-    </div>
+  <div class="row">
+    <header>
+      <div class="col-md-12 text-center">
+        <h1>Gina Map</h1>
+        <button type="button" class="btn btn-default" aria-label="Left Align" ng-click="toggleMenu = !toggleMenu">
+          <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+        </button>
+      </div>
+    </header>
   </div>
   <div id="map-canvas"></div>
-  <div class="control-panel">
+  <div class="control-panel" ng-show="toggleMenu">
     <div ng-view></div>
   </div>
   <script src="bower_components/jquery/dist/jquery.min.js"></script>
