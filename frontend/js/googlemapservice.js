@@ -225,7 +225,7 @@ angular.module('myApp.googleMapService', [])
 
       // zoom out one level if zoom is greater than 5
       var listener = google.maps.event.addListener(cache.map, "idle", function() {
-        if (cache.map.getZoom() > 5) cache.map.setZoom((cache.map.getZoom() - 1));
+        cache.map.setZoom((cache.map.getZoom() - 1));
         google.maps.event.removeListener(listener);
       });
 
