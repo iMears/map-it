@@ -11,6 +11,7 @@
   "dependencies": {
     "bcrypt-nodejs": "https://registry.npmjs.org/bcrypt-nodejs/-/bcrypt-nodejs-0.0.3.tgz",
     "body-parser": "https://registry.npmjs.org/body-parser/-/body-parser-1.13.1.tgz",
+    "dotenv": "^1.2.0",
     "express": "https://registry.npmjs.org/express/-/express-4.13.0.tgz",
     "mongoose": "^4.0.6",
     "passport": "https://registry.npmjs.org/passport/-/passport-0.2.2.tgz",

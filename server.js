@@ -3,7 +3,7 @@ var express     = require('express');
 var mongoose    = require('mongoose');
 var bodyParser  = require('body-parser');
 var passport    = require('passport');
-var credentials = require('./config/credentials')
+require('dotenv').load();
 
 // Import the controllers
 var locationController = require('./controllers/location');
@@ -14,7 +14,7 @@ var authController = require('./controllers/auth');
 var app = express();
 
 // Connect to the mapit database
-mongoose.connect(credentials.mongodb.url, function (err, db) {
+mongoose.connect(process.env.DB_URL, function (err, db) {
   if (!err) {
     console.log("Connected!");
   } else {
